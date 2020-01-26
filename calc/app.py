@@ -46,10 +46,10 @@ def lambda_handler(event, context):
     if isinstance(operator, list):
         operator = operator[0]
 
-    logging.info(operands, operator)
+    logging.info(f"{operands} {operator}")
 
-    responseData["Value"] = calculate(operands, operator)
+    value = calculate(operands, operator)
 
-    logging.info(responseData)
+    logging.info(value)
 
-    cfnresponse.send(event, context, cfnresponse.SUCCESS, responseData)
+    cfnresponse.send(event, context, cfnresponse.SUCCESS, {"Value": value})
