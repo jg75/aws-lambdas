@@ -25,3 +25,7 @@ Outputs:
   BasicCalcFunctionArn:
     Description: BasicCalc Lambda Function ARN
     Value: !GetAtt BasicCalcFunction.Arn
+
+  BasicCalcFunctionParameter:
+    Description: BasicCalc Lambda Function Parameter
+    Value: !Ref BasicCalcFunctionParameter

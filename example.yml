@@ -1,0 +1,21 @@
+Parameters:
+  BasicCalcFunction:
+    Description: Basic calculator function Arn
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /CommonFunctions/BasicCalcFunction
+
+Resources:
+  Add:
+    Type: Custom::Add
+    Properties:
+      ServiceToken: !Ref BasicCalcFunction
+      Operands:
+        - 2
+        - 3
+        - 5
+      Operator: +
+
+Outputs:
+  Sum:
+    Description: The sum of the operands in the add test
+    Value: !GetAtt Add.Value
