@@ -1,5 +1,6 @@
 """Very basic calculator"""
-from json import dumps
+import cfnresponse
+import logging
 
 
 operations = {
@@ -9,24 +10,24 @@ operations = {
     "/": lambda a, b: a // b,
     "%": lambda a, b: a % b,
 }
+logger = logging.getLogger()
+
+logger.setLevel(logging.INFO)
 
 
 def calculate(operands, operator):
     """Get the result of the operation."""
     result = 0
 
-    if len(operands) and operator in operations.keys():
+    try:
         result = int(operands[0])
+    except IndexError as e:
+        return result
 
-        for operand in operands[1:]:
-            result = operations[operator](result, int(operand))
+    for operand in operands[1:]:
+        result = operations[operator](result, int(operand))
 
     return result
-
-
-def response(body, status=200):
-    """Get a properly formatted response."""
-    return {"statusCode": status, "body": dumps(body)}
 
 
 def lambda_handler(event, context):
@@ -39,8 +40,17 @@ def lambda_handler(event, context):
         Operator: + | - | * | / | %
     }
     """
+    logging.debug(event)
     operands = event["ResourceProperties"]["Operands"]
     operator = event["ResourceProperties"]["Operator"]
-    body = {"Value": calculate(operands, operator)}
 
-    return response(body)
+    if isinstance(operator, list):
+        operator = operator[0]
+
+    logging.info(operands, operator)
+
+    responseData["Value"] = calculate(operands, operator)
+
+    logging.info(responseData)
+
+    cfnresponse.send(event, context, cfnresponse.SUCCESS, responseData)
