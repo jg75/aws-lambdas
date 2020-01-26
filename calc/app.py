@@ -64,13 +64,13 @@ def create_response(function, *arguments):
         return {
             "statusCode": 200,
             "status": cfnresponse.SUCCESS,
-            "body": {"Value": function(*arguments)}
+            "body": {"Value": function(*arguments)},
         }
     except (ArithmeticError, ValueError) as e:
         return {
             "statusCode": 400,
             "status": cfnresponse.FAILED,
-            "exception": str(e)
+            "exception": {"Value": str(e)},
         }
 
 
@@ -97,13 +97,13 @@ def lambda_handler(event, context):
     """
     operator, operands = get_operation(event)
     response = create_response(calculate, operator, operands)
+    response_data = response.get("body", response.get("exception"))
 
     if event.get("ResponseURL"):
-        cfnresponse.send(event, context, response["status"], response["body"])
+        cfnresponse.send(event, context, response["status"], response_data)
 
     return {
         "statusCode": response["statusCode"],
-        "body": json.dumps(response["body"])
-        if response.get("body")
-        else response["exception"],
+        "status": response["status"],
+        "body": json.dumps(response_data),
     }
