@@ -7,7 +7,6 @@ Parameters:
 Resources:
   Add:
     Type: Custom::Add
-    DeletionPolicy: Retain
     Properties:
       ServiceToken: !Ref BasicCalcFunction
       Operands:
@@ -18,7 +17,6 @@ Resources:
 
   Subtract:
     Type: Custom::Subtract
-    DeletionPolicy: Retain
     Properties:
       ServiceToken: !Ref BasicCalcFunction
       Operands:
@@ -29,7 +27,6 @@ Resources:
 
   Multiply:
     Type: Custom::Multiply
-    DeletionPolicy: Retain
     Properties:
       ServiceToken: !Ref BasicCalcFunction
       Operands:
@@ -39,7 +36,6 @@ Resources:
 
   Divide:
     Type: Custom::Divide
-    DeletionPolicy: Retain
     Properties:
       ServiceToken: !Ref BasicCalcFunction
       Operands:
@@ -49,7 +45,6 @@ Resources:
 
   Modulus:
     Type: Custom::Modulus
-    DeletionPolicy: Retain
     Properties:
       ServiceToken: !Ref BasicCalcFunction
       Operands:
