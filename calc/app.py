@@ -58,21 +58,20 @@ def create_response(function, *arguments):
         Exception: <Exception>
     }
     """
-    response = {
-        "statusCode": 400,
-        "status": cfnresponse.FAILED
-    }
-
     logger.info(f"Received: {arguments}")
 
     try:
-        response["body"] = {"Value": function(*arguments)}
-        response["statusCode"] = 200
-        response["status"] = cfnresponse.SUCCESS
+        return {
+            "statusCode": 200,
+            "status": cfnresponse.SUCCESS,
+            "body": {"Value": function(*arguments)}
+        }
     except (ArithmeticError, ValueError) as e:
-        response["exception"] = str(e)
-
-    return response
+        return {
+            "statusCode": 400,
+            "status": cfnresponse.FAILED,
+            "exception": str(e)
+        }
 
 
 def lambda_handler(event, context):
@@ -105,5 +104,6 @@ def lambda_handler(event, context):
     return {
         "statusCode": response["statusCode"],
         "body": json.dumps(response["body"])
-        if response.get("body") else response["exception"]
+        if response.get("body")
+        else response["exception"],
     }
