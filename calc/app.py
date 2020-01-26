@@ -40,7 +40,6 @@ def lambda_handler(event, context):
         Operator: + | - | * | / | %
     }
     """
-    logging.debug(event)
     operands = event["ResourceProperties"]["Operands"]
     operator = event["ResourceProperties"]["Operator"]
 
