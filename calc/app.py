@@ -1,6 +1,7 @@
 """Very basic calculator"""
 import json
 import logging
+import math
 
 import cfnresponse
 
@@ -14,6 +15,10 @@ operations = {
     "*": lambda a, b: a * b,
     "/": lambda a, b: a // b,
     "%": lambda a, b: a % b,
+    "abs": lambda a, b: abs(a, b),
+    "gcd": lambda a, b: math.gcd(a, b),
+    "log": lambda a, b: int(math.log(a, b)),
+    "pow": lambda a, b: int(math.pow(a, b))
 }
 
 
@@ -34,9 +39,12 @@ def get_operation(event):
     """Get the operands and operator from the event."""
     resource_properties = event.get("ResourceProperties", {})
     operands = resource_properties.get("Operands", [0])
-    operator = resource_properties.get("Operator")
+    operator = resource_properties.get("Operator", "")
 
-    if isinstance(operator, list):
+    if type(operands) is not list:
+        operands = [operands]
+
+    if type(operator) is list:
         operator = operator[0]
 
     return operator, operands
