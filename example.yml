@@ -7,15 +7,73 @@ Parameters:
 Resources:
   Add:
     Type: Custom::Add
+    DeletionPolicy: Retain
     Properties:
       ServiceToken: !Ref BasicCalcFunction
       Operands:
         - 2
         - 3
         - 5
-      Operator: +
+      Operator: "+"
+
+  Subtract:
+    Type: Custom::Subtract
+    DeletionPolicy: Retain
+    Properties:
+      ServiceToken: !Ref BasicCalcFunction
+      Operands:
+        - 5
+        - 3
+        - 2
+      Operator: "-"
+
+  Multiply:
+    Type: Custom::Multiply
+    DeletionPolicy: Retain
+    Properties:
+      ServiceToken: !Ref BasicCalcFunction
+      Operands:
+        - 2
+        - 3
+      Operator: "*"
+
+  Divide:
+    Type: Custom::Divide
+    DeletionPolicy: Retain
+    Properties:
+      ServiceToken: !Ref BasicCalcFunction
+      Operands:
+        - 6
+        - 2
+      Operator: "/"
+
+  Modulus:
+    Type: Custom::Modulus
+    DeletionPolicy: Retain
+    Properties:
+      ServiceToken: !Ref BasicCalcFunction
+      Operands:
+        - 6
+        - 2
+      Operator: "%"
 
 Outputs:
   Sum:
-    Description: The sum of the operands in the add test
+    Description: The sum of the operands in Add
     Value: !GetAtt Add.Value
+
+  Difference:
+    Description: The difference of the operands in Subtract
+    Value: !GetAtt Subtract.Value
+
+  Product:
+    Description: The product of the operands in Multiply
+    Value: !GetAtt Multiply.Value
+
+  Quotient:
+    Description: The quotient of the operands in Divide
+    Value: !GetAtt Divide.Value
+
+  Remainder:
+    Description: The remainder of the operands in Modulus
+    Value: !GetAtt Modulus.Value
