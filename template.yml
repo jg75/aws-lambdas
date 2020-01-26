@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Transform: AWS::Serverless-2016-10-31
-Description: Lambdas
+Description: Common Functions
   
 Globals:
   Function:
@@ -13,6 +13,13 @@ Resources:
       CodeUri: calc/
       Handler: app.lambda_handler
       Runtime: python3.7
+
+  BasicCalcParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Description: BasicCalc Lambda Function ARN
+      Name: !Sub ${AWS::StackName}/BasicCalcFunction
+      Value: !GetAtt BasicCalcFunction.Arn
 
 Outputs:
   BasicCalcFunctionArn:
