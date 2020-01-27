@@ -1,14 +1,14 @@
 Parameters:
-  BasicCalcFunction:
+  BasicCalculatorFunction:
     Description: Basic calculator function Arn
     Type: AWS::SSM::Parameter::Value<String>
-    Default: /CommonFunctions/BasicCalcFunction
+    Default: /CommonFunctions/BasicCalculatorFunction
 
 Resources:
   Add:
     Type: Custom::Add
     Properties:
-      ServiceToken: !Ref BasicCalcFunction
+      ServiceToken: !Ref BasicCalculatorFunction
       Operands:
         - 2
         - 3
@@ -18,7 +18,7 @@ Resources:
   Subtract:
     Type: Custom::Subtract
     Properties:
-      ServiceToken: !Ref BasicCalcFunction
+      ServiceToken: !Ref BasicCalculatorFunction
       Operands:
         - 5
         - 3
@@ -28,7 +28,7 @@ Resources:
   Multiply:
     Type: Custom::Multiply
     Properties:
-      ServiceToken: !Ref BasicCalcFunction
+      ServiceToken: !Ref BasicCalculatorFunction
       Operands:
         - 2
         - 3
@@ -37,7 +37,7 @@ Resources:
   Divide:
     Type: Custom::Divide
     Properties:
-      ServiceToken: !Ref BasicCalcFunction
+      ServiceToken: !Ref BasicCalculatorFunction
       Operands:
         - 6
         - 2
@@ -46,7 +46,7 @@ Resources:
   Modulus:
     Type: Custom::Modulus
     Properties:
-      ServiceToken: !Ref BasicCalcFunction
+      ServiceToken: !Ref BasicCalculatorFunction
       Operands:
         - 6
         - 2
@@ -55,7 +55,7 @@ Resources:
   Log:
     Type: Custom::Log
     Properties:
-      ServiceToken: !Ref BasicCalcFunction
+      ServiceToken: !Ref BasicCalculatorFunction
       Operands:
         - 8
         - 2
@@ -64,7 +64,7 @@ Resources:
   Pow:
     Type: Custom::Pow
     Properties:
-      ServiceToken: !Ref BasicCalcFunction
+      ServiceToken: !Ref BasicCalculatorFunction
       Operands:
         - 2
         - 3
@@ -73,7 +73,7 @@ Resources:
   Gcd:
     Type: Custom::Gcd
     Properties:
-      ServiceToken: !Ref BasicCalcFunction
+      ServiceToken: !Ref BasicCalculatorFunction
       Operands:
         - 2
         - 8

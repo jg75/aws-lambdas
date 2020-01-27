@@ -1,15 +1,15 @@
 Parameters:
-  BasicCalcFunction:
+  BasicCalculatorFunction:
     Description: Basic calculator function Arn
     Type: AWS::SSM::Parameter::Value<String>
-    Default: /CommonFunctions/BasicCalcFunction
+    Default: /CommonFunctions/BasicCalculatorFunction
 
 Resources:
   DivideByZero:
     Type: Custom::DivideByZero
     DeletionPolicy: Retain
     Properties:
-      ServiceToken: !Ref BasicCalcFunction
+      ServiceToken: !Ref BasicCalculatorFunction
       Operands:
         - 0
         - 0

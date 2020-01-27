@@ -92,7 +92,7 @@ def lambda_handler(event, context):
     Request
     {
         ResourceProperties: {
-            Operator: + | - | * | / | %,
+            Operator: + | - | * | / | % | etc.,
             Operands: List<Number>
         }
     }
