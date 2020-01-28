@@ -7,26 +7,49 @@ Globals:
     Timeout: 3
 
 Resources:
-  BasicCalcFunction:
+  BasicCalculatorFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: calc/
-      Handler: app.lambda_handler
+      CodeUri: src/
+      Handler: basic_calculator.handler
       Runtime: python3.7
 
-  BasicCalcParameter:
+  BasicCalculatorParameter:
     Type: AWS::SSM::Parameter
     Properties:
-      Description: BasicCalc Lambda Function ARN
+      Description: Basic Calculator Lambda Function ARN
       Type: String
-      Name: !Sub /${AWS::StackName}/BasicCalcFunction
-      Value: !GetAtt BasicCalcFunction.Arn
+      Name: !Sub /${AWS::StackName}/BasicCalculatorFunction
+      Value: !GetAtt BasicCalculatorFunction.Arn
+
+  NetworkCalculatorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: network_calculator.handler
+      Runtime: python3.7
+
+  NetworkCalculatorParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Description: Network Calculator Lambda Function ARN
+      Type: String
+      Name: !Sub /${AWS::StackName}/NetworkCalculatorFunction
+      Value: !GetAtt NetworkCalculatorFunction.Arn
 
 Outputs:
-  BasicCalcFunctionArn:
-    Description: BasicCalc Lambda Function ARN
-    Value: !GetAtt BasicCalcFunction.Arn
+  BasicCalculatorFunctionArn:
+    Description: Basic Calculator Lambda Function ARN
+    Value: !GetAtt BasicCalculatorFunction.Arn
 
-  BasicCalcFunctionParameter:
-    Description: BasicCalc Lambda Function Parameter
-    Value: !Ref BasicCalcParameter
+  BasicCalculatorFunctionParameter:
+    Description: Basic Calculator Lambda Function Parameter
+    Value: !Ref BasicCalculatorParameter
+
+  NetworkCalculatorFunctionArn:
+    Description: Network Calculator Lambda Function ARN
+    Value: !GetAtt NetworkCalculatorFunction.Arn
+
+  NetworkCalculatorFunctionParameter:
+    Description: Network Calculator Lambda Function Parameter
+    Value: !Ref NetworkCalculatorParameter
