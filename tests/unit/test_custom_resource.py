@@ -13,12 +13,7 @@ def test_echo():
 
 @pytest.mark.unit
 def test_send_not_called():
-    event = {
-        "ResourceProperties": {
-            "Operator": "echo",
-            "Operands": "test"
-        }
-    }
+    event = {"ResourceProperties": {"Operator": "echo", "Operands": "test"}}
     context = {}
 
     with patch("cfnresponse.send") as mock_send:
@@ -31,10 +26,7 @@ def test_send_not_called():
 def test_send_called_with_success():
     event = {
         "ResponseURL": "test",
-        "ResourceProperties": {
-            "Operator": "echo",
-            "Operands": "test"
-        }
+        "ResourceProperties": {"Operator": "echo", "Operands": "test"},
     }
     context = {}
 
