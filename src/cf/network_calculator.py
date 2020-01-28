@@ -7,9 +7,7 @@ from src.cf.custom_resource import CustomResourceHandler
 class NetworkCalculator(CustomResourceHandler):
     def __init__(self):
         super().__init__()
-        self.operations = {
-            "SubnetSize": self.get_subnet_size
-        }
+        self.operations = {"SubnetSize": self.get_subnet_size}
 
     @staticmethod
     def get_subnet_size(netmask_bits, subnets):
@@ -40,12 +38,3 @@ class NetworkCalculator(CustomResourceHandler):
 
 
 handler = NetworkCalculator()
-
-if __name__ == "__main__":
-    response = handler({
-        "ResourceProperties": {
-            "Operator": "Ipv4SubnetSize", "Operands": ["24", "8"]
-        }
-    }, {})
-
-    print(response)

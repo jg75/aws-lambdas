@@ -6,6 +6,7 @@ class BasicCalculator(CustomResourceHandler):
     """
     Support basic calculator operations.
     """
+
     operations = {
         "+": lambda a, b: a + b,
         "-": lambda a, b: a - b,
@@ -29,11 +30,3 @@ class BasicCalculator(CustomResourceHandler):
 
 
 handler = BasicCalculator()
-
-if __name__ == "__main__":
-    response = handler(
-        {"ResourceProperties": {"Operator": "log", "Operands": ["2", "8"]}},
-        {}
-    )
-
-    print(response)

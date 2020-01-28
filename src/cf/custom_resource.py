@@ -9,6 +9,7 @@ class CustomResourceHandler:
     """
     Custom Resource Handler
     """
+
     operations = {"echo": lambda a: a}
 
     def __init__(self):
@@ -103,21 +104,10 @@ class CustomResourceHandler:
         if isinstance(value, (Exception)):
             return {
                 "statusCode": 400,
-                "body": json.dumps({"Value": "", "Exception": str(value)})
+                "body": json.dumps({"Value": "", "Exception": str(value)}),
             }
 
-        return {
-            "statusCode": 200,
-            "body": json.dumps({"Value": value})
-        }
+        return {"statusCode": 200, "body": json.dumps({"Value": value})}
 
 
 handler = CustomResourceHandler()
-
-if __name__ == "__main__":
-    response = handler(
-        {"ResourceProperties": {"Operator": "", "Operands": ["1", "0"]}},
-        {}
-    )
-
-    print(response)
