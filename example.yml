@@ -52,34 +52,6 @@ Resources:
         - 2
       Operator: "%"
 
-  Log:
-    Type: Custom::Log
-    Properties:
-      ServiceToken: !Ref BasicCalculatorFunction
-      Operands:
-        - 8
-        - 2
-      Operator: log
-
-  Pow:
-    Type: Custom::Pow
-    Properties:
-      ServiceToken: !Ref BasicCalculatorFunction
-      Operands:
-        - 2
-        - 3
-      Operator: pow
-
-  Gcd:
-    Type: Custom::Gcd
-    Properties:
-      ServiceToken: !Ref BasicCalculatorFunction
-      Operands:
-        - 2
-        - 8
-        - 16
-      Operator: gcd
-
 Outputs:
   Sum:
     Description: The sum of the operands in Add
@@ -100,15 +72,3 @@ Outputs:
   Remainder:
     Description: The remainder of the operands in Modulus
     Value: !GetAtt Modulus.Value
-
-  Log2:
-    Description: The log base 2 of 8
-    Value: !GetAtt Log.Value
-
-  PowerOf2:
-    Description: 2 to the power of 3
-    Value: !GetAtt Pow.Value
-
-  Gcd2:
-    Description: The greatest common divisor of 2, 8 and 16
-    Value: !GetAtt Gcd.Value
