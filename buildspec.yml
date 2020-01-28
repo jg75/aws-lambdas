@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.7
+    commands:
+      - pip install aws-sam-cli tox
+
+  pre_build:
+    commands:
+      - aws configure set default.region $AWS_REGION
+
+  build:
+    commands:
+      - tox
+      - sam build
+
+  post_build:
+    commands:
+      - sam package --s3-bucket $S3_BUCKET --output-template-file sam.yml
+
+artifacts:
+  files:
+    - sam.yml
