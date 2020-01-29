@@ -40,7 +40,7 @@ Outputs:
 
 The following will be included in the lambda `event`:
 
-```json
+```python
 {
     'ResponseURL': 'http://pre-signed-S3-url-for-response',
     'StackId' : 'arn:aws:cloudformation:us-west-2:123456789012:stack/stack-name/guid',
