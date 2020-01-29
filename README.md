@@ -3,9 +3,10 @@
 Topics
 
 - [Cloudformation Integrations](#cloudformation-integrations)
-  1. [Custom Resource Handler](#custom-resource-handler)
-  2. [Basic Calculator Handler](#basic-calculator-handler)
-  3. [Network Calculator Handler](#network-calculator-handler)
+  1. [Custom Resources](#custom-resources)
+  2. [Custom Resource Handler](#custom-resource-handler)
+  3. [Basic Calculator Handler](#basic-calculator-handler)
+  4. [Network Calculator Handler](#network-calculator-handler)
 
 ---
 
@@ -17,13 +18,13 @@ For information about custom resources, refer to the [Documentation](https://doc
 
 ---
 
-#### Custom Resource Handler
+### Custom Resource Handler
 
 Base class for lambda backend for CloudFormation custom resources provides
 methods for parsing the event object, sending a response to cloudformation,
 and returning a well formed response. An overridable method `execute`, which
 can be implemented by derived classes performs the `Operation` on a list of
-`Operands`. A dictionary `operations` used as a registry of `Operator` -> method
+`Operands`. A dictionary `operations` used as a registry of `Operator` to function
 mappings used by this handler.
 
 Given the following template:
