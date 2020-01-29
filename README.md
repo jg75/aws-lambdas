@@ -1,6 +1,10 @@
 # aws-lambdas
 
-## CustomResourceHandler
+## CloudFormation integrations
+
+For information about custom resources, see [here](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html)
+
+### CustomResourceHandler
 
 Base class for lambda backend for CloudFormation custom resources provides
 methods for parsing the event object, sending a response to cloudformation,
@@ -8,8 +12,6 @@ and returning a well formed response. An overridable method `execute`, which
 can be implemented by derived classes performs the `Operation` on a list of
 `Operands`. A dictionary `operations` used as a registry of `Operator` -> method
 mappings used by this handler.
-
-For information about custom resources, see [here](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html)
 
 Given the following template:
 
@@ -97,7 +99,7 @@ Failed response:
     }
 ```
 
-## BasicCalculatorHandler
+### BasicCalculatorHandler
 
 Lambda backend for CloudFormation custom resources
 providing basic calculator functions.
@@ -112,7 +114,7 @@ Operations:
 Operands:
  - Number(s)
 
-## NetworkCalculatorHandler
+### NetworkCalculatorHandler
 
 Lambda backend for CloudFormation custom resources that do networking
 related caclulations like the subnet size in bits of a given network cidr
