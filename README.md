@@ -1,10 +1,23 @@
-# aws-lambdas
+# AWS Lambdas
 
-## CloudFormation integrations
+Topics
 
-For information about custom resources, see [here](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html)
+- [Cloudformation Integrations](#cloudformation-integrations)
+  1. [Custom Resource Handler](#custom-resource-handler)
+  2. [Basic Calculator Handler](#basic-calculator-handler)
+  3. [Network Calculator Handler](#network-calculator-handler)
 
-### CustomResourceHandler
+---
+
+## CloudFormation Integrations
+
+### Custom Resources
+
+For information about custom resources, refer to the [Documentation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html).
+
+---
+
+#### Custom Resource Handler
 
 Base class for lambda backend for CloudFormation custom resources provides
 methods for parsing the event object, sending a response to cloudformation,
@@ -102,7 +115,9 @@ Failed response:
 }
 ```
 
-### BasicCalculatorHandler
+---
+
+#### Basic Calculator Handler
 
 Lambda backend for CloudFormation custom resources
 providing basic calculator functions.
@@ -116,8 +131,10 @@ Operations:
 
 Operands:
  - Number(s)
+ 
+ ---
 
-### NetworkCalculatorHandler
+#### Network Calculator Handler
 
 Lambda backend for CloudFormation custom resources that do networking
 related caclulations like the subnet size in bits of a given network cidr
