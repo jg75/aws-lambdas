@@ -69,14 +69,16 @@ The following payload will be sent to the `ResponseUrl` for cloudformation:
 
 ```python
 {
-    'Status': <str>
+{
+    'Status': 'SUCCESS' or 'FAILED',
     'LogStream': context.log_stream_name,
-    "PhysicalResourceId": <str> | context.log_stream_name,
+    "PhysicalResourceId": pysical_resource_id or context.log_stream_name,
     'StackId': event['StackId'],
     'RequestId': event['RequestId'],
     'LogicalResourceId': event['LogicalResourceId'],
     'NoEcho': True | False,
-    'Data': <dict>
+    'Data': data
+}
 }
 ```
 
