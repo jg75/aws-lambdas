@@ -15,7 +15,7 @@ mappings used by this handler.
 
 Given the following template:
 
-```
+```yaml
 Parameters:
   MyCustomResourceFunction:
     Description: Custom resource handler function Arn
@@ -40,63 +40,64 @@ Outputs:
 
 The following will be included in the lambda `event`:
 
-```
-    {
-        'ResponseURL': 'http://pre-signed-S3-url-for-response',
-        'StackId' : 'arn:aws:cloudformation:us-west-2:123456789012:stack/stack-name/guid',
-        'RequestId' : 'unique id for this create request',
-        'ResourceType' : 'Custom::Echo',
-        'LogicalResourceId' : 'MyEcho',
-        'ResourceProperties': {
-            'Operator': 'echo',
-            'Operands': ['this is a', 'test']
-        }
+```json
+{
+    'ResponseURL': 'http://pre-signed-S3-url-for-response',
+    'StackId' : 'arn:aws:cloudformation:us-west-2:123456789012:stack/stack-name/guid',
+    'RequestId' : 'unique id for this create request',
+    'ResourceType' : 'Custom::Echo',
+    'LogicalResourceId' : 'MyEcho',
+    'ResourceProperties': {
+        'Operator': 'echo',
+        'Operands': ['this is a', 'test']
     }
+}
 ```
 
 The `Data` response data of the `execute` method is put into a dictionary as
 a string:
 
-```
-    {
-        'Value': str(operations[operator](operands))
-    }
+```python
+{
+    'Value': str(operations[operator](operands))
+}
 ```
 
 The `Status` is captured as a string 'SUCCESS' | 'FAILED'.
 
 The following payload will be sent to the `ResponseUrl` for cloudformation:
-```
-    {
-        'Status': <str>
-        'LogStream': context.log_stream_name,
-        "PhysicalResourceId": <str> | context.log_stream_name,
-        'StackId': event['StackId'],
-        'RequestId': event['RequestId'],
-        'LogicalResourceId': event['LogicalResourceId'],
-        'NoEcho': True | False,
-        'Data': <dict>
-    }
+
+```python
+{
+    'Status': <str>
+    'LogStream': context.log_stream_name,
+    "PhysicalResourceId": <str> | context.log_stream_name,
+    'StackId': event['StackId'],
+    'RequestId': event['RequestId'],
+    'LogicalResourceId': event['LogicalResourceId'],
+    'NoEcho': True | False,
+    'Data': <dict>
+}
 ```
 
 The following responses are returned by the handler.
 
 Success response:
 
-```
-    {
-        statusCode: 200,
-        body: <json data>
-    }
+```python
+{
+    statusCode: 200,
+    body: <json data>
+}
 ```
 
 Failed response:
 
-```
-    {
-        statusCode: 400,
-        body: <json data with the exception>
-    }
+```python
+{
+    statusCode: 400,
+    body: <json data with the exception>
+}
 ```
 
 ### BasicCalculatorHandler
