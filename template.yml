@@ -11,7 +11,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: src/
-      Handler: basic_calculator.handler
+      Handler: cf.basic_calculator.handler
       Runtime: python3.7
 
   BasicCalculatorParameter:
@@ -26,7 +26,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: src/
-      Handler: network_calculator.handler
+      Handler: cf.network_calculator.handler
       Runtime: python3.7
 
   NetworkCalculatorParameter:

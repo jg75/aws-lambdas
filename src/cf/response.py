@@ -5,14 +5,11 @@ import requests
 from requests.exceptions import RequestException
 
 
-SUCCESS = "SUCCESS"
-FAILED = "FAILED"
-
-
 class CloudFormationResponse:
-    """
-    Responsible for creating a properly formatted CloudFormation response.
-    """
+    """Responsible for creating a properly formatted CloudFormation response."""
+
+    SUCCESS = "SUCCESS"
+    FAILED = "FAILED"
 
     def __init__(self):
         """Override init."""
@@ -26,7 +23,7 @@ class CloudFormationResponse:
 
         {
             Status: SUCCESS | FAILED,
-            Reason: Log Stream: context.log_stream_name,
+            LogStream: context.log_stream_name,
             PhysicalResourceId: <str> | context.log_stream_name,
             StackId: event['StackId'],
             RequestId: event['RequestId'],
@@ -43,8 +40,8 @@ class CloudFormationResponse:
         body = json.dumps(
             {
                 "Status": status,
-                "Reason": f"See log stream: {log_stream}",
-                "PhysicalResourceId": physical_resource_id,
+                "LogStream": log_stream,
+                "PhysicalResourceId": physical_resource_id or log_stream,
                 "StackId": event["StackId"],
                 "RequestId": event["RequestId"],
                 "LogicalResourceId": event["LogicalResourceId"],

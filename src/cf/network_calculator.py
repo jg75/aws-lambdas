@@ -1,11 +1,20 @@
-"""Do subnet stuff."""
+"""
+NetworkCalculator.
+
+Lambda backend for CloudFormation custom resources that do networking
+related caclulations like the subnet size in bits of a given network cidr
+for a specific number of subnets.
+"""
 from math import log2
 
 from src.cf.custom_resource import CustomResourceHandler
 
 
 class NetworkCalculator(CustomResourceHandler):
+    """Methods for doing network related calculations."""
+
     def __init__(self):
+        """Override the operations registry with new methods."""
         super().__init__()
         self.operations = {"SubnetSize": self.get_subnet_size}
 

@@ -1,11 +1,14 @@
-"""Lambda handler for CloudFormation custom resources."""
+"""
+BasicCalculator.
+
+Lambda backend for CloudFormation custom resources
+providing basic calculator functions.
+"""
 from src.cf.custom_resource import CustomResourceHandler
 
 
 class BasicCalculator(CustomResourceHandler):
-    """
-    Support basic calculator operations.
-    """
+    """Support basic calculator operations."""
 
     operations = {
         "+": lambda a, b: a + b,
