@@ -7,7 +7,7 @@ for a specific number of subnets.
 """
 from math import log2
 
-from src.cf.custom_resource import CustomResourceHandler
+from cf.custom_resource import CustomResourceHandler
 
 
 class NetworkCalculator(CustomResourceHandler):

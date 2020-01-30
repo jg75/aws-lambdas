@@ -1,6 +1,7 @@
+"""Tests for the NetworkCalculatorHandler."""
 import pytest
 
-from src.cf.network_calculator import handler
+from cf.network_calculator import handler
 
 
 @pytest.mark.unit
@@ -18,4 +19,5 @@ from src.cf.network_calculator import handler
     ],
 )
 def test_subnet_size(operator, operands, value):
+    """It should be able to calculate subnet size."""
     assert handler.execute(operator, operands) == value

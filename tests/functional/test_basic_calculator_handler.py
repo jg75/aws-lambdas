@@ -1,10 +1,12 @@
+"""Functional tests for the basic_calculator_handler."""
 import pytest
 
-from src.cf.basic_calculator import handler
+from cf.basic_calculator import handler
 
 
 @pytest.mark.functional
 def test_handler():
+    """It should have a callable handler."""
     assert callable(handler)
 
 
@@ -30,6 +32,7 @@ def test_handler():
     ],
 )
 def test_handler_200(operator, operands):
+    """It should return a status 200 on success."""
     event = {"ResourceProperties": {"Operator": operator, "Operands": operands}}
     response = handler(event, {})
 
@@ -48,6 +51,7 @@ def test_handler_200(operator, operands):
     ],
 )
 def test_handler_400(operator, operands):
+    """It should return a status 400 on failure."""
     event = {"ResourceProperties": {"Operator": operator, "Operands": operands}}
     response = handler(event, {})
 

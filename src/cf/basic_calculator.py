@@ -4,7 +4,7 @@ BasicCalculator.
 Lambda backend for CloudFormation custom resources
 providing basic calculator functions.
 """
-from src.cf.custom_resource import CustomResourceHandler
+from cf.custom_resource import CustomResourceHandler
 
 
 class BasicCalculator(CustomResourceHandler):

@@ -4,15 +4,15 @@ Description: Common Functions
   
 Globals:
   Function:
+    CodeUri: src/
+    Runtime: python3.7
     Timeout: 3
 
 Resources:
   BasicCalculatorFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/
       Handler: cf.basic_calculator.handler
-      Runtime: python3.7
 
   BasicCalculatorParameter:
     Type: AWS::SSM::Parameter
@@ -25,9 +25,7 @@ Resources:
   NetworkCalculatorFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/
       Handler: cf.network_calculator.handler
-      Runtime: python3.7
 
   NetworkCalculatorParameter:
     Type: AWS::SSM::Parameter

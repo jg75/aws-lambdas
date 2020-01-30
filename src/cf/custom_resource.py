@@ -11,7 +11,7 @@ mappings used by this handler.
 import json
 import logging
 
-from src.cf import cfnresponse
+from cf import cfnresponse
 
 
 class CustomResourceHandler:
