@@ -4,6 +4,11 @@ Parameters:
     Type: AWS::SSM::Parameter::Value<String>
     Default: /CommonFunctions/BasicCalculatorFunction
 
+  NetworkCalculatorFunction:
+    Description: Network calculator function Arn
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /CommonFunctions/NetworkCalculatorFunction
+
 Resources:
   Add:
     Type: Custom::Add
@@ -52,6 +57,15 @@ Resources:
         - 2
       Operator: "%"
 
+  SubnetSize:
+    Type: Custom::SubnetSize
+    Properties:
+      ServiceToken: !Ref NetworkCalculatorFunction
+      Operands:
+        - 16
+        - 8
+      Operator: SubnetSize
+
 Outputs:
   Sum:
     Description: The sum of the operands in Add
@@ -72,3 +86,7 @@ Outputs:
   Remainder:
     Description: The remainder of the operands in Modulus
     Value: !GetAtt Modulus.Value
+
+  Subnet:
+    Description: The size of a subnet in bits
+    Value: !GetAtt SubnetSize.Value

@@ -1,14 +1,21 @@
-"""Lambda handler for CloudFormation custom resources."""
+"""
+CustomResourceHandler.
+
+Base class for lambda backend for CloudFormation custom resources provides
+methods for parsing the event object, sending a response to cloudformation,
+and returning a well formed response. An overridable method `execute`, which
+can be implemented by derived classes performs the `Operation` on a list of
+`Operands`. A dictionary `operations` used as a registry of `Operator` -> method
+mappings used by this handler.
+"""
 import json
 import logging
 
-import cfnresponse
+from cf import cfnresponse
 
 
 class CustomResourceHandler:
-    """
-    Custom Resource Handler
-    """
+    """Custom Resource Handler."""
 
     operations = {"echo": lambda a: a}
 

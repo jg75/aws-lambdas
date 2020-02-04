@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from src.cf.custom_resource import handler
+from cf.custom_resource import handler
 
 
 @pytest.mark.functional

@@ -1,6 +1,6 @@
 import pytest
 
-from src.cf.network_calculator import handler
+from cf.network_calculator import handler
 
 
 @pytest.mark.functional
