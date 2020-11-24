@@ -4,7 +4,6 @@ import pytest
 from cf.network_calculator import handler
 
 
-@pytest.mark.unit
 @pytest.mark.parametrize(
     "operator, operands, value",
     [

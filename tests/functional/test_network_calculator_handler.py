@@ -3,12 +3,10 @@ import pytest
 from cf.network_calculator import handler
 
 
-@pytest.mark.functional
 def test_handler():
     assert callable(handler)
 
 
-@pytest.mark.functional
 def test_handler_200():
     def run(netmask_bits, subnets):
         event = {
@@ -26,7 +24,6 @@ def test_handler_200():
             run(netmask_bits, subnets)
 
 
-@pytest.mark.functional
 @pytest.mark.parametrize(
     "operator, operands",
     [("", None), ("unknown", None), ("SubnetSize", []), ("SubnetSize", ["one"])],

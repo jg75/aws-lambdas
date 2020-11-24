@@ -5,12 +5,10 @@ import pytest
 from cf.custom_resource import handler
 
 
-@pytest.mark.functional
 def test_handler():
     assert callable(handler)
 
 
-@pytest.mark.functional
 @pytest.mark.parametrize(
     "operator, operands",
     [
@@ -36,7 +34,6 @@ def test_handler_200(operator, operands):
     assert int(response["statusCode"]) == 200
 
 
-@pytest.mark.functional
 @pytest.mark.parametrize("operator, operands", [("", None), ("unknown", None)])
 def test_handler_400(operator, operands):
     event = {"ResourceProperties": {"Operator": operator, "Operands": operands}}

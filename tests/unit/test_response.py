@@ -27,7 +27,6 @@ def data():
     return {"Value": "test-data-value"}
 
 
-@pytest.mark.unit
 def test_cfnresponse(event, context, status, data):
     """It should send a response when a response url is present."""
     with patch("requests.put") as mock_put:
@@ -36,7 +35,6 @@ def test_cfnresponse(event, context, status, data):
     mock_put.assert_called_once()
 
 
-@pytest.mark.unit
 def test_cfnresponse_exception(bad_event, context, status, data):
     """It should handle request exceptions."""
     event = bad_event

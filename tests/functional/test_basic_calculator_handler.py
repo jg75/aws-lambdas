@@ -4,13 +4,11 @@ import pytest
 from cf.basic_calculator import handler
 
 
-@pytest.mark.functional
 def test_handler():
     """It should have a callable handler."""
     assert callable(handler)
 
 
-@pytest.mark.functional
 @pytest.mark.parametrize(
     "operator, operands",
     [
@@ -39,7 +37,6 @@ def test_handler_200(operator, operands):
     assert int(response["statusCode"]) == 200
 
 
-@pytest.mark.functional
 @pytest.mark.parametrize(
     "operator, operands",
     [
