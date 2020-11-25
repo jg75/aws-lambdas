@@ -18,7 +18,7 @@ class BasicCalculator(CustomResourceHandler):
     def execute(self, operator, operands):
         """Execute the operation."""
         try:
-            return reduce(self.operations[operator], [int(i) for i in operands])
+            return reduce(self.operations[operator], (int(i) for i in operands))
         except KeyError:
             raise ValueError("unknown operator")
 
